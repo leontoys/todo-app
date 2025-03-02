@@ -1,6 +1,13 @@
 import React,{useState} from "react";
-import TodoItem from "./TodoItem" //each task will be represented by TodoItem
 
-const TodoList = ()=>{
-    
+const TodoList = ({todos})=>{
+    return(
+    <ul>
+        {todos.map( todo=>
+            <li key={todo.id}>{todo.text}</li>
+        )}
+    </ul>
+    )
 }
+
+export default TodoList

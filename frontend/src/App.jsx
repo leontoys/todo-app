@@ -5,13 +5,14 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import TodoForm from './components/TodoForm'
 import TodoList from './components/TodoList'
-import TodoItem from './components/TodoItem'
 
 function App() {
 
   const [todos,setTodos] = useState([])
+  console.log("todos",todos)
 
-  const addTodo(input){
+
+  const addTodo = (input)=>{
     //add input to the task list
     const newTodo = {
       id:Date.now(),
@@ -25,6 +26,7 @@ function App() {
     <div>
       <h1>Todo List</h1>
       <TodoForm addTodo={addTodo}></TodoForm>
+      <TodoList todos={todos}></TodoList>
     </div>
   )
 }
