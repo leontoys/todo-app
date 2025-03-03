@@ -1,11 +1,36 @@
-const TodoItem = ({todo,toggleComplete,deleteTodo})=>{
+import { useState } from "react"
 
-    return(
-        <li style={{textDecoration:todo.completed? "line-through":"none",cursor:"pointer"}}>
-        <input 
-        onChange={()=>toggleComplete(todo.id)}
-        type="checkbox"></input>{todo.text}
-        <button onClick={()=>deleteTodo(todo.id)}>❌</button>
+const TodoItem = ({ todo, toggleComplete, deleteTodo }) => {
+
+    const [isEditing, setIsEditing] = useState(false)
+    const [newText,setNewText] = useState(todo.text)
+
+    const handleSave = ()=>{
+        if(!newText.trim()){
+            return
+        }
+        setNewText(newText)
+        setIsEditing(false)
+    }
+
+    return (
+        <li style={{ textDecoration: todo.completed ? "line-through" : "none", cursor: "pointer" }}>
+            <input type="checkbox"
+                onChange={() => toggleComplete(todo.id)}></input>
+
+            { isEditing?(
+                <>
+                <input type = "text" value = { newText } onChange = {(e) => setNewText(e.target.value)} />
+                <button onClick={handleSave}>💾 Save</button>  
+                </>               
+                )               
+                : (
+                <span>{todo.text}</span>
+                )}
+
+
+            <button onClick={() => setIsEditing(true)}>✏️ Edit</button>
+            <button onClick={() => deleteTodo(todo.id)}>❌</button>
         </li>
     )
 }

@@ -1,31 +1,20 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
+import './App.css';
 
-const TodoForm = ({addTodo})=>{
-    const [input,setInput] = useState("")//makes the input field controlled component by linking
+function App() {
+  const [todos, setTodos] = useState([]);
 
-    const handleSubmit = (e)=>{
-        e.preventDefault()
-        if(!input.trim()){
-            return
-        }
-        //we have to add to the todo list
-        addTodo(input)//call function in App.js
-        setInput("")
-    }
-    
-    return(
-        //form with task input and button
-        <form onSubmit={handleSubmit}>
-            <input
-                type = "text"
-                value={input}
-                onChange={(e)=>setInput(e.target.value)}
-                placeholder="Enter a task..."
-            ></input>
-            <button type="submit">Add</button>
-        </form>
-    )
+  const addTodo = (text) => {
+    const newTodo = { id: Date.now(), text, completed: false };
+    setTodos([...todos, newTodo]);
+  };
+
+  return (
+    <div className="App">
+      <h1>My To-Do List</h1>
+      {/* TodoForm and TodoList will go here */}
+    </div>
+  );
 }
 
-export default TodoForm
-
+export default App;
