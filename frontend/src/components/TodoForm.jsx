@@ -4,6 +4,7 @@ const TodoForm = ({addTodo})=>{
 
     const [text,setText] = useState('')
 
+    //for adding new todo
     const handleSubmit = (e)=>{
         e.preventDefault()
         if(!text.trim()){

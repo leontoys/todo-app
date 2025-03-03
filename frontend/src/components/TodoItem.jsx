@@ -1,9 +1,14 @@
 import React from "react"
 
-const TodoItem = ({todo})=>{
+const TodoItem = ({todo,toggleComplete,deleteTodo})=>{
     return(
-        <div>
+        <div style={{textDecoration:todo.completed?"line-through":"none"}}>
+            <input type="checkbox"
+            checked={todo.completed}
+            onChange={()=>{toggleComplete(todo.id)}}
+            ></input>
             <span>{todo.text}</span>
+            <button onClick={()=>{deleteTodo(todo.id)}}>Delete</button>
         </div>
     )
 }
