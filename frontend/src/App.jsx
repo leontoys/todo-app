@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React,{useEffect, useState, useRef} from "react";
 //import './App.css'
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
@@ -6,13 +6,9 @@ import TodoList from "./components/TodoList";
 const App = ()=>{
   //list of todos
   const [todos,setTodos] = useState([])
-
-  //add todos to local storage
-  useEffect(()=>{
-    if(todos.length > 0){
-    localStorage.setItem("todos",JSON.stringify(todos))
-    }
-  },[todos])  
+  //When you want a component to “remember” some information, 
+  // but you don’t want that information to trigger new renders, you can use a ref.
+  const isInitialRender = useRef(true)
 
   //read todos on pageload
   useEffect(()=>{
@@ -21,6 +17,15 @@ const App = ()=>{
       setTodos(savedTodos)
     }
   },[])
+
+  //add todos to local storage
+  useEffect(()=>{
+    if(isInitialRender.current){
+      isInitialRender.current = false
+      return
+    }
+    localStorage.setItem("todos",JSON.stringify(todos))
+  },[todos])      
 
   //for adding new todo
   const addTodo = (text,dueDate)=>{
@@ -47,10 +52,10 @@ const App = ()=>{
   }
 
   //edit todo
-  const editTodo = (id,newText)=>{
+  const editTodo = (id,newText,newDate)=>{
     setTodos(
       todos.map(todo=>
-        todo.id === id? {...todo,text:newText}:todo
+        todo.id === id? {...todo,text:newText,dueDate:newDate}:todo
       )
     )
   }
