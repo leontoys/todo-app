@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import './App.css'
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
@@ -6,6 +6,21 @@ import TodoList from "./components/TodoList";
 const App = ()=>{
   //list of todos
   const [todos,setTodos] = useState([])
+
+  //add todos to local storage
+  useEffect(()=>{
+    if(todos.length > 0){
+    localStorage.setItem("todos",JSON.stringify(todos))
+    }
+  },[todos])  
+
+  //read todos on pageload
+  useEffect(()=>{
+    const savedTodos = JSON.parse(localStorage.getItem("todos"))
+    if(savedTodos){
+      setTodos(savedTodos)
+    }
+  },[])
 
   //for adding new todo
   const addTodo = (text)=>{
