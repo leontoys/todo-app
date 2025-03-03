@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
-import './App.css';
+import React,{useState} from "react";
 
-function App() {
-  const [todos, setTodos] = useState([]);
+const TodoForm = ({addTodo})=>{
 
-  const addTodo = (text) => {
-    const newTodo = { id: Date.now(), text, completed: false };
-    setTodos([...todos, newTodo]);
-  };
+    const [text,setText] = useState('')
 
-  return (
-    <div className="App">
-      <h1>My To-Do List</h1>
-      {/* TodoForm and TodoList will go here */}
-    </div>
-  );
+    const handleSubmit = (e)=>{
+        e.preventDefault()
+        if(!text.trim()){
+            return
+        }
+        addTodo(text)
+        setText('')
+    }
+
+    return(
+        <form onSubmit={handleSubmit}>
+            <input type="text"
+                   value={text}
+                   onChange={(e)=>setText(e.target.value)}
+                   placeholder="Add new task ..."
+            ></input>
+            <button>Add</button>
+        </form>
+    )
 }
 
-export default App;
+export default TodoForm
