@@ -31,11 +31,23 @@ const App = ()=>{
     )
   }
 
+  //edit todo
+  const editTodo = (id,newText)=>{
+    setTodos(
+      todos.map(todo=>
+        todo.id === id? {...todo,text:newText}:todo
+      )
+    )
+  }
+
   return(
     <div className="App">
       <h1>Todo List App</h1>
       <TodoForm addTodo={addTodo}/>
-      <TodoList todos={todos} toggleComplete={toggleComplete} deleteTodo={deleteTodo}></TodoList>
+      <TodoList todos={todos} 
+      toggleComplete={toggleComplete} 
+      editTodo={editTodo}
+      deleteTodo={deleteTodo}></TodoList>
     </div>
   )
 }
