@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { formateDate } from "../utils/dateFormatter"
 
 const TodoItem = ({todo,toggleComplete,deleteTodo,editTodo})=>{
     //set editing state
@@ -28,6 +29,7 @@ const TodoItem = ({todo,toggleComplete,deleteTodo,editTodo})=>{
             }
             <button onClick={handleEdit}>{isEditing?"Save":"Edit"}</button>
             <button onClick={()=>{deleteTodo(todo.id)}}>Delete</button>
+            <div>Due:{formateDate(todo.dueDate)}</div>
         </div>
     )
 }

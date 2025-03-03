@@ -3,6 +3,7 @@ import React,{useState} from "react";
 const TodoForm = ({addTodo})=>{
 
     const [text,setText] = useState('')
+    const [dueDate,setDueDate] = useState("")
 
     //for adding new todo
     const handleSubmit = (e)=>{
@@ -10,7 +11,7 @@ const TodoForm = ({addTodo})=>{
         if(!text.trim()){
             return
         }
-        addTodo(text)
+        addTodo(text,dueDate)
         setText('')
     }
 
@@ -21,6 +22,10 @@ const TodoForm = ({addTodo})=>{
                    onChange={(e)=>setText(e.target.value)}
                    placeholder="Add new task ..."
             ></input>
+            <input type="date"
+                value={dueDate}
+                onChange={(e)=>setDueDate(e.target.value)}
+                ></input>
             <button>Add</button>
         </form>
     )

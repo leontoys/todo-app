@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-import './App.css'
+//import './App.css'
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 
@@ -23,8 +23,8 @@ const App = ()=>{
   },[])
 
   //for adding new todo
-  const addTodo = (text)=>{
-    const newTodo = {id:Date.now(),text:text, completed:false}
+  const addTodo = (text,dueDate)=>{
+    const newTodo = {id:Date.now(),text:text, completed:false, dueDate}
     setTodos([...todos,newTodo])
   }
 
