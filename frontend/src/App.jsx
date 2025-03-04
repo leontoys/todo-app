@@ -1,5 +1,5 @@
 import React,{useEffect, useState, useRef} from "react";
-//import './App.css'
+import './App.css'
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 
@@ -28,8 +28,8 @@ const App = ()=>{
   },[todos])      
 
   //for adding new todo
-  const addTodo = (text,dueDate)=>{
-    const newTodo = {id:Date.now(),text:text, completed:false, dueDate}
+  const addTodo = (text,dueDate,category)=>{
+    const newTodo = {id:Date.now(),text:text, completed:false, dueDate,category}
     setTodos([...todos,newTodo])
   }
 
@@ -52,19 +52,32 @@ const App = ()=>{
   }
 
   //edit todo
-  const editTodo = (id,newText,newDate)=>{
+  const editTodo = (id,newText,newDate,newCategory)=>{
     setTodos(
       todos.map(todo=>
-        todo.id === id? {...todo,text:newText,dueDate:newDate}:todo
+        todo.id === id? {...todo,text:newText,dueDate:newDate,category:newCategory}:todo
       )
     )
   }
+
+  // Sort todos by due date
+  const sortTodosByDueDate = (todos) => {
+    return todos.slice().sort((a, b) => {
+      if (a.dueDate && b.dueDate) {
+        return new Date(a.dueDate) - new Date(b.dueDate); // <-- Sort by due date
+      }
+      return 0; // <-- If due date is missing, maintain original order
+    });
+  };
+
+  // Get sorted todos
+  const sortedTodos = sortTodosByDueDate(todos);  
 
   return(
     <div className="App">
       <h1>Todo List App</h1>
       <TodoForm addTodo={addTodo}/>
-      <TodoList todos={todos} 
+      <TodoList todos={sortedTodos} 
       toggleComplete={toggleComplete} 
       editTodo={editTodo}
       deleteTodo={deleteTodo}></TodoList>
