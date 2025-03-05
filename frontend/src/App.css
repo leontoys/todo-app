@@ -1,65 +1,12 @@
-.App {
-  font-family: Arial, sans-serif;
-  max-width: 600px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App{
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
-}
-
-h1 {
-  color: #333;
-}
-
-form {
-  margin-bottom: 20px;
-}
-
-input[type="text"],
-input[type="date"],
-select {
-  padding: 8px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin : 5px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.todo-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
-
-.todo-item.completed {
-  background-color: #f0f0f0;
-  text-decoration: line-through;
-}
-
-.todo-item input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-.filter-container {
-  margin-bottom: 20px;
-}
-
-.filter-container label {
-  margin-right: 10px;
 }
