@@ -43,8 +43,8 @@ const TodoItem = ({todo,toggleComplete,deleteTodo,editTodo})=>{
             ) : 
             (
             <>
-            <span>{todo.text}</span>
-            <div>Due:{formateDate(todo.dueDate)}</div>
+            <span> {todo.text}</span>
+            <div>Due: {formateDate(todo.dueDate)}</div>
             <div>Category: {todo.category}</div> {/* <-- Display category */}            
             </>)
             }
