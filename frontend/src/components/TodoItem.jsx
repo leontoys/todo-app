@@ -17,7 +17,7 @@ const TodoItem = ({todo,toggleComplete,deleteTodo,editTodo})=>{
     }
 
     return(
-        <div style={{textDecoration:todo.completed?"line-through":"none"}}>
+        <div className="todo-item" style={{textDecoration:todo.completed?"line-through":"none"}}>
             <input type="checkbox"
             checked={todo.completed}
             onChange={()=>{toggleComplete(todo.id)}}
